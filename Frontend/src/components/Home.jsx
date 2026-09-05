@@ -92,7 +92,7 @@ const Home = () => {
       const token = localStorage.getItem("token");
 
       const { data } = await axios.delete(
-        `http://localhost:3000/tasks/${taskId}`,
+        `${import.meta.env.VITE_API_URL}/tasks/${taskId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
