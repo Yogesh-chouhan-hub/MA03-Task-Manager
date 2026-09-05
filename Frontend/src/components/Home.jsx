@@ -499,18 +499,14 @@ const Home = () => {
                   <p>
                     Created:{" "}
                     {task.createdAt
-                      ? new Date(task.createdAt)
-                          .toLocaleDateString("en-GB")
-                          .replace(/\//g, "-")
+                      ? new Date(task.createdAt).toLocaleDateString("en-GB")
                       : "N/A"}
                   </p>
 
                   <p>
                     Due Date:{" "}
                     {task.dueDate
-                      ? new Date(task.dueDate)
-                          .toLocaleDateString("en-GB")
-                          .replace(/\//g, "-")
+                      ? new Date(task.dueDate).toLocaleDateString("en-GB")
                       : "No due date"}
                   </p>
 
