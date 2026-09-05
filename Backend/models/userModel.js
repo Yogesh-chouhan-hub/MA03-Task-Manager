@@ -22,22 +22,18 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
       },
-
       description: {
         type: String,
         trim: true,
       },
-
       priority: {
         type: String,
         enum: ["Low", "Medium", "High"],
         default: "Medium",
       },
-
       dueDate: {
         type: Date,
       },
-
       completed: {
         type: Boolean,
         default: false,
@@ -53,7 +49,6 @@ const userSchema = new mongoose.Schema({
     default: new Date(),
   },
 });
-
 userSchema.pre("save", async function () {
   if (!this.isModified("password")) return;
   this.password = await bcrypt.hash(this.password, 12);

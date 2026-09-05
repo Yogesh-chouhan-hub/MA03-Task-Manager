@@ -20,7 +20,6 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState("Newest");
-
   const handleTaskChange = (e) => {
     const { name, value } = e.target;
 
@@ -32,15 +31,12 @@ const Home = () => {
 
   const handleAddTask = async (e) => {
     e.preventDefault();
-
     if (!taskData.title.trim()) {
       toast.error("Task title is required");
       return;
     }
-
     try {
       const token = localStorage.getItem("token");
-
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/tasks`,
         taskData,
@@ -54,21 +50,17 @@ const Home = () => {
 
       if (data.success) {
         toast.success("Task added successfully");
-
         setTasks([...tasks, data.task]);
-
         setTaskData({
           title: "",
           description: "",
           priority: "Medium",
           dueDate: "",
         });
-
         setShowForm(false);
       }
     } catch (error) {
       console.error(error);
-
       toast.error(error.response?.data?.message || "Failed to add task");
     }
   };
@@ -76,7 +68,6 @@ const Home = () => {
   const toggleTask = async (taskId) => {
     try {
       const token = localStorage.getItem("token");
-
       const { data } = await axios.patch(
         `${import.meta.env.VITE_API_URL}/tasks/${taskId}/toggle`,
         {},
@@ -86,10 +77,8 @@ const Home = () => {
           },
         },
       );
-
       if (data.success) {
         setTasks(tasks.map((task) => (task._id === taskId ? data.task : task)));
-
         toast.success(data.message);
       }
     } catch (error) {
@@ -121,26 +110,20 @@ const Home = () => {
       toast.error(error.response?.data?.message || "Failed to delete task");
     }
   };
-
   const deleteCompletedTasks = async () => {
     const completedCount = tasks.filter((task) => task.completed).length;
-
     if (completedCount === 0) {
       toast.info("No completed tasks to delete");
       return;
     }
-
     const confirmDelete = window.confirm(
       "Are you sure you want to delete all completed tasks?",
     );
-
     if (!confirmDelete) {
       return;
     }
-
     try {
       const token = localStorage.getItem("token");
-
       const { data } = await axios.delete(
         `${import.meta.env.VITE_API_URL}/tasks/completed`,
         {
@@ -149,15 +132,12 @@ const Home = () => {
           },
         },
       );
-
       if (data.success) {
         setTasks(tasks.filter((task) => !task.completed));
-
         toast.success(data.message);
       }
     } catch (error) {
       console.error(error);
-
       toast.error(
         error.response?.data?.message || "Failed to delete completed tasks",
       );
@@ -166,15 +146,12 @@ const Home = () => {
 
   const handleEditTask = async (e) => {
     e.preventDefault();
-
     if (!taskData.title.trim()) {
       toast.error("Task title is required");
       return;
     }
-
     try {
       const token = localStorage.getItem("token");
-
       const { data } = await axios.put(
         `${import.meta.env.VITE_API_URL}/tasks/${editingTaskId}`,
         taskData,
@@ -185,27 +162,22 @@ const Home = () => {
           },
         },
       );
-
       if (data.success) {
         setTasks(
           tasks.map((task) => (task._id === editingTaskId ? data.task : task)),
         );
-
         toast.success("Task updated successfully");
-
         setTaskData({
           title: "",
           description: "",
           priority: "Medium",
           dueDate: "",
         });
-
         setEditingTaskId(null);
         setShowForm(false);
       }
     } catch (error) {
       console.error(error);
-
       toast.error(error.response?.data?.message || "Failed to update task");
     }
   };
@@ -230,19 +202,16 @@ const Home = () => {
           {},
           { withCredentials: true },
         );
-
         if (!data.status) {
           navigate("/login");
           return;
         }
-
         setUsername(data.user);
       } catch (error) {
         console.error(error);
         navigate("/login");
       }
     };
-
     verifyUser();
   }, [navigate]);
 
@@ -252,14 +221,11 @@ const Home = () => {
       try {
         setLoading(true);
         setError("");
-
         const token = localStorage.getItem("token");
-
         if (!token) {
           navigate("/login");
           return;
         }
-
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/tasks`,
           {
@@ -268,7 +234,6 @@ const Home = () => {
             },
           },
         );
-
         if (data.success) {
           setTasks(data.tasks);
         }
@@ -280,13 +245,11 @@ const Home = () => {
           navigate("/login");
           return;
         }
-
         setError(error.response?.data?.message || "Failed to load tasks");
       } finally {
         setLoading(false);
       }
     };
-
     getTasks();
   }, [navigate]);
 
@@ -297,9 +260,7 @@ const Home = () => {
         {},
         { withCredentials: true },
       );
-
       localStorage.removeItem("token");
-
       navigate("/login");
     } catch (error) {
       console.error(error);
@@ -310,7 +271,6 @@ const Home = () => {
     if (!task.dueDate || task.completed) {
       return false;
     }
-
     return new Date(task.dueDate) < new Date();
   };
 
@@ -324,35 +284,29 @@ const Home = () => {
         filter === "All" ||
         (filter === "Pending" && !task.completed) ||
         (filter === "Completed" && task.completed);
-
       return matchesSearch && matchesFilter;
     })
     .sort((a, b) => {
       if (sort === "Newest") {
         return new Date(b.createdAt) - new Date(a.createdAt);
       }
-
       if (sort === "Oldest") {
         return new Date(a.createdAt) - new Date(b.createdAt);
       }
-
       if (sort === "Due Date") {
         if (!a.dueDate) return 1;
         if (!b.dueDate) return -1;
 
         return new Date(a.dueDate) - new Date(b.dueDate);
       }
-
       if (sort === "Priority") {
         const priorityValue = {
           High: 1,
           Medium: 2,
           Low: 3,
         };
-
         return priorityValue[a.priority] - priorityValue[b.priority];
       }
-
       return 0;
     });
 
@@ -460,17 +414,14 @@ const Home = () => {
               <h3>{tasks.length}</h3>
               <p>Total Tasks</p>
             </div>
-
             <div>
               <h3>{tasks.filter((task) => !task.completed).length}</h3>
               <p>Pending</p>
             </div>
-
             <div>
               <h3>{tasks.filter((task) => task.completed).length}</h3>
               <p>Completed</p>
             </div>
-
             <div>
               <h3>{tasks.filter((task) => isOverdue(task)).length}</h3>
               <p>Overdue</p>
@@ -496,23 +447,19 @@ const Home = () => {
                   </h3>
 
                   <p>{task.description}</p>
-
                   <p>Priority: {task.priority}</p>
-
                   <p>
                     Created:{" "}
                     {task.createdAt
                       ? new Date(task.createdAt).toLocaleDateString("en-GB")
                       : "N/A"}
                   </p>
-
                   <p>
                     Due Date:{" "}
                     {task.dueDate
                       ? new Date(task.dueDate).toLocaleDateString("en-GB")
                       : "No due date"}
                   </p>
-
                   <p>Status: {task.completed ? "Completed" : "Pending"}</p>
 
                   {isOverdue(task) && <p className="overdue_text">Overdue</p>}
@@ -521,9 +468,7 @@ const Home = () => {
                     <button onClick={() => toggleTask(task._id)}>
                       {task.completed ? "Mark Pending" : "Complete"}
                     </button>
-
                     <button onClick={() => startEditTask(task)}>Edit</button>
-
                     <button onClick={() => deleteTask(task._id)}>Delete</button>
                   </div>
                 </div>
