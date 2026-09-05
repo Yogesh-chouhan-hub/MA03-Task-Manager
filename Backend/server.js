@@ -11,14 +11,12 @@ const taskRoute = require("./routes/TaskRoute");
 app.use(
   cors({
     origin: ["http://localhost:5173"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
   }),
 );
 app.use(cookieParser());
-
 app.use(express.json());
-
 app.use("/tasks", taskRoute);
 app.use("/", authRoute);
 

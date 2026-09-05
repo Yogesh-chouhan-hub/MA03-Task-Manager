@@ -1,6 +1,5 @@
 const User = require("../models/userModel");
 
-// CREATE TASK
 module.exports.createTask = async (req, res) => {
   try {
     const { title, description, priority, dueDate } = req.body;
@@ -48,7 +47,6 @@ module.exports.createTask = async (req, res) => {
   }
 };
 
-// GET ALL TASKS
 module.exports.getTasks = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -74,7 +72,6 @@ module.exports.getTasks = async (req, res) => {
   }
 };
 
-// GET SINGLE TASK
 module.exports.getTask = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -109,7 +106,6 @@ module.exports.getTask = async (req, res) => {
   }
 };
 
-// UPDATE TASK
 module.exports.updateTask = async (req, res) => {
   try {
     const { title, description, priority, dueDate } = req.body;
@@ -154,7 +150,6 @@ module.exports.updateTask = async (req, res) => {
   }
 };
 
-// TOGGLE COMPLETION
 module.exports.toggleTask = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -194,7 +189,6 @@ module.exports.toggleTask = async (req, res) => {
   }
 };
 
-// DELETE SINGLE TASK
 module.exports.deleteTask = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -233,7 +227,6 @@ module.exports.deleteTask = async (req, res) => {
   }
 };
 
-// DELETE ALL COMPLETED TASKS
 module.exports.deleteCompletedTasks = async (req, res) => {
   try {
     const user = await User.findById(req.userId);

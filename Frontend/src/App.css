@@ -9,8 +9,6 @@ body {
   background: #f2f5f9;
 }
 
-/* Form */
-
 .form_container {
   width: 350px;
   margin: 100px auto;
@@ -79,8 +77,6 @@ body {
 }
 
 
-/* Home */
-
 .home_page {
   height: 100vh;
   display: flex;
@@ -113,8 +109,280 @@ body {
   background: #555;
 }
 
+.dashboard {
+  min-height: 100vh;
+}
 
-/* Mobile */
+
+
+.dashboard_header {
+  background: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.dashboard_header h1 {
+  font-size: 25px;
+}
+
+.dashboard_header p {
+  margin-top: 5px;
+  color: gray;
+}
+
+.dashboard_header button {
+  padding: 8px 15px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.dashboard_header button:hover {
+  background: #555;
+}
+
+
+.dashboard_content {
+  width: 90%;
+  max-width: 1000px;
+  margin: 30px auto;
+}
+
+
+.dashboard_top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.dashboard_top h2 {
+  white-space: nowrap;
+}
+
+
+.task_controls {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+.task_controls input,
+.task_controls select {
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.task_controls input {
+  flex: 1;
+}
+
+
+.task_top_buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.task_top_buttons button {
+  padding: 10px 15px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.task_top_buttons button:hover {
+  background: #555;
+}
+
+.delete_completed_btn {
+  background: #777 !important;
+}
+
+
+.task_form {
+  background: white;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.task_form input,
+.task_form textarea,
+.task_form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.task_form input:focus,
+.task_form textarea:focus,
+.task_form select:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.task_form textarea {
+  height: 70px;
+  resize: vertical;
+}
+
+.task_form button {
+  padding: 8px 15px;
+  margin-right: 8px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.task_form button:hover {
+  background: #555;
+}
+
+.task_stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.task_stats div {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.task_stats h3 {
+  font-size: 25px;
+}
+
+.task_stats p {
+  color: gray;
+  margin-top: 5px;
+}
+
+.task_list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.task_card {
+  background: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.task_card h3 {
+  margin-bottom: 10px;
+}
+
+.task_card p {
+  margin: 6px 0;
+  color: #555;
+}
+
+.task_actions {
+  margin-top: 15px;
+}
+
+.task_actions button {
+  padding: 8px 12px;
+  margin-right: 8px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.task_actions button:hover {
+  background: #555;
+}
+
+.completed_task {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.overdue_text {
+  font-weight: bold;
+  color: red !important;
+}
+
+
+.task_message {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ddd;
+  color: #666;
+  border-radius: 5px;
+}
+
+@media (max-width: 800px) {
+  .dashboard_top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .task_controls {
+    flex-direction: column;
+  }
+
+  .task_top_buttons {
+    flex-direction: column;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .dashboard_header {
+    padding: 15px;
+  }
+
+  .dashboard_header h1 {
+    font-size: 20px;
+  }
+
+  .dashboard_content {
+    width: 95%;
+    margin: 20px auto;
+  }
+
+  .task_stats {
+    flex-direction: column;
+  }
+
+  .task_card {
+    padding: 15px;
+  }
+
+  .task_actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .task_actions button {
+    margin-right: 0;
+  }
+}
+
 
 @media (max-width: 500px) {
   .form_container {
