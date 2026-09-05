@@ -42,7 +42,7 @@ const Home = () => {
       const token = localStorage.getItem("token");
 
       const { data } = await axios.post(
-        "http://localhost:3000/tasks",
+        `${import.meta.env.VITE_API_URL}/tasks`,
         taskData,
         {
           headers: {
@@ -78,7 +78,7 @@ const Home = () => {
       const token = localStorage.getItem("token");
 
       const { data } = await axios.patch(
-        `http://localhost:3000/tasks/${taskId}/toggle`,
+        `${import.meta.env.VITE_API_URL}/tasks/${taskId}/toggle`,
         {},
         {
           headers: {
@@ -142,7 +142,7 @@ const Home = () => {
       const token = localStorage.getItem("token");
 
       const { data } = await axios.delete(
-        "http://localhost:3000/tasks/completed",
+        `${import.meta.env.VITE_API_URL}/tasks/completed`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -176,7 +176,7 @@ const Home = () => {
       const token = localStorage.getItem("token");
 
       const { data } = await axios.put(
-        `http://localhost:3000/tasks/${editingTaskId}`,
+        `${import.meta.env.VITE_API_URL}/tasks/${editingTaskId}`,
         taskData,
         {
           headers: {
@@ -226,7 +226,7 @@ const Home = () => {
     const verifyUser = async () => {
       try {
         const { data } = await axios.post(
-          "http://localhost:3000/",
+          `${import.meta.env.VITE_API_URL}/`,
           {},
           { withCredentials: true },
         );
@@ -260,11 +260,14 @@ const Home = () => {
           return;
         }
 
-        const { data } = await axios.get("http://localhost:3000/tasks", {
-          headers: {
-            Authorization: `Bearer ${token}`,
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/tasks`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        });
+        );
 
         if (data.success) {
           setTasks(data.tasks);
@@ -290,7 +293,7 @@ const Home = () => {
   const Logout = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/logout",
+        `${import.meta.env.VITE_API_URL}/logout`,
         {},
         { withCredentials: true },
       );
