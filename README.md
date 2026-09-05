@@ -16,7 +16,7 @@ Users can register, log in, and manage their tasks with features such as creatin
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/MERN-Task-Manager.git
+git clone https://github.com/Yogesh-chouhan-hub/MA03-Task-Manager
 cd MERN-Task-Manager
 ```
 
