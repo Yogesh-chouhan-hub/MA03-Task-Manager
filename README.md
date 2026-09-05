@@ -69,12 +69,12 @@ Authorization: Bearer <token>
 ```
 
 Method Endpoint Description
-POST /tasks Create a task
-GET /tasks Get all tasks
-GET /tasks/:taskId Get a single task
-PUT /tasks/:taskId Update a task
-PATCH /tasks/:taskId/toggle Toggle task completion
-DELETE /tasks/:taskId Delete a task
+POST /tasks Create a task,
+GET /tasks Get all tasks,
+GET /tasks/:taskId Get a single task,
+PUT /tasks/:taskId Update a task,
+PATCH /tasks/:taskId/toggle Toggle task completion,
+DELETE /tasks/:taskId Delete a task,
 DELETE /tasks/completed Delete all completed tasks
 
 ## Live Project
